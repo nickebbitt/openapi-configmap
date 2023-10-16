@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openapi
+data:
+  {{- $files := .Files }}
+  {{- range tuple .Values.openApiSpecificationFile }}
+  {{ . }}: |-
+        {{ $files.Get . | b64enc }}
+  {{- end }}
+  

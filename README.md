@@ -27,3 +27,26 @@ helm upgrade --install openapi-configmap ./openapi-configmap
 
 kubectl get configmap openapi -o yaml
 ```
+
+## Expose GRPC service
+
+### minikube
+
+```sh
+minikube service openapi-deployment --url
+```
+
+You should see somthing like...
+
+```sh
+http://127.0.0.1:53357
+❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+```
+
+Interact with the GRPC API using [gRPC UI](https://github.com/fullstorydev/grpcui)...
+
+```sh
+grpcui --plaintext 127.0.0.1:53357
+```
+
+A new browser window should spin up for the gRPC Web UI allowing you to inetract with the service.
